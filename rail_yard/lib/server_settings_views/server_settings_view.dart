@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rail_yard/device_model/device_model_managers.dart';
+import 'package:rail_yard/server_settings_views/server_settings_credentials_reset_view.dart';
+import 'package:rail_yard/server_settings_views/server_settings_outline_view.dart';
+import 'package:rail_yard/server_settings_views/server_settings_restart_view.dart';
+import 'package:rail_yard/server_settings_views/server_settings_scan_view.dart';
+import 'package:rail_yard/server_settings_views/server_settings_status_view.dart';
+import 'package:rail_yard/server_settings_views/server_settings_update_view.dart';
 
 class ServerSettingsView extends StatefulWidget {
   const ServerSettingsView({
@@ -58,26 +64,91 @@ class _ServerSettingsView extends State<ServerSettingsView> {
           ),
         ),
         actions: [
-          ElevatedButton(
-            onPressed: () {
-              Navigator.pop(context);
-              context.read<DeviceManagers>().deleteManager(widget.index);
-            },
-            style: ElevatedButton.styleFrom(
-              shape: const CircleBorder(),
-              elevation: 5,
-              backgroundColor: Colors.red,
-            ),
-            child: const Icon(
-              Icons.delete,
-              color: Colors.white,
-            ),
+          ServerSettingsDeleteButton(
+            index: widget.index,
           )
         ],
       ),
-      body: const Center(
-        child: Column(
-          children: [],
+      body: ListView(
+        children: [
+          ServerSettingsOutlineView(index: widget.index),
+          ServerSettingsStatusView(index: widget.index),
+          ServerSettingsScanView(index: widget.index),
+          ServerSettingsUpdateView(index: widget.index),
+          ServerSettingsCredentialsResetView(index: widget.index),
+          ServerSettingsRestartView(index: widget.index),
+        ],
+      ),
+    );
+  }
+}
+
+class ServerSettingsDeleteButton extends StatelessWidget {
+  const ServerSettingsDeleteButton({
+    super.key,
+    required this.index,
+  });
+  final int index;
+
+  Future<void> showDeletionAlert({
+    required BuildContext context,
+    required String name,
+    required int index,
+  }) async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Remove $name?'),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('Deleting will remove Rail yard from use.'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+                context.read<DeviceManagers>().deleteManager(index);
+                Navigator.pop(context);
+              },
+              child: Text('Delete $name',
+                  style: const TextStyle(
+                    color: Colors.red,
+                  )),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<DeviceManagers>(
+      builder: (context, value, child) => ElevatedButton(
+        onPressed: () {
+          showDeletionAlert(
+            context: context,
+            name: value.getManager(index)?.serverSettings.name ?? 'device',
+            index: index,
+          );
+        },
+        style: ElevatedButton.styleFrom(
+          shape: const CircleBorder(),
+          elevation: 5,
+          backgroundColor: Colors.red,
+        ),
+        child: const Icon(
+          Icons.delete,
+          color: Colors.white,
         ),
       ),
     );

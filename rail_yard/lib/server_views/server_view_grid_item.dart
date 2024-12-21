@@ -32,8 +32,8 @@ class ServerViewGridItem extends StatelessWidget {
           decoration: BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Theme.of(context).colorScheme.secondary,
                 Theme.of(context).colorScheme.primary,
+                Theme.of(context).colorScheme.secondary,
               ],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
@@ -50,9 +50,10 @@ class ServerViewGridItem extends StatelessWidget {
                     ElevatedButton(
                       onPressed: () => {},
                       style: ElevatedButton.styleFrom(
-                          shape: const CircleBorder(),
-                          elevation: 5,
-                          backgroundColor: Colors.black),
+                        shape: const CircleBorder(),
+                        elevation: 5,
+                        backgroundColor: Colors.black,
+                      ),
                       child: Icon(
                         Icons.wifi,
                         color: Theme.of(context).colorScheme.primary,

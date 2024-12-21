@@ -10,16 +10,17 @@ void main() {
       child: MaterialApp(
         theme: ThemeData(
           useMaterial3: true,
-          primaryColor: Colors.blue,
-          colorScheme: ColorScheme.fromSwatch(
-            primarySwatch: Colors.blue,
-          ).copyWith(
+          colorScheme: ColorScheme.fromSeed(
+            seedColor: Colors.blue,
+            primary: Colors.blue,
             secondary: Colors.lightBlue,
+            brightness: Brightness.light,
+          ),
+          buttonTheme: const ButtonThemeData(
+            shape: CircleBorder(),
           ),
         ),
-        darkTheme: ThemeData.dark(
-          useMaterial3: true,
-        ),
+        darkTheme: ThemeData.dark(),
         themeMode: ThemeMode.system,
         home: RailYardApp(),
       ),
