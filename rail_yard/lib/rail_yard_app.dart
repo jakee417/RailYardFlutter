@@ -114,7 +114,7 @@ class RailYardApp extends StatelessWidget {
         ),
         child: const Icon(Icons.add),
       ),
-      bottomNavigationBar: const BottomAppBar(),
+      bottomNavigationBar: const BottomAppBar(height: 35),
     );
   }
 }

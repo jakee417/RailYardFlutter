@@ -7,6 +7,14 @@ class ServerSettingsOutlineView extends StatelessWidget {
   });
   final int index;
 
+  Widget buildBottomHalfSheet(BuildContext context, Widget widget) {
+    return SizedBox(
+      width: MediaQuery.of(context).size.width,
+      height: MediaQuery.of(context).size.height * 0.5,
+      child: widget,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final ListTileThemeData tileTheme = _LisTileDefaultsM3(context);
@@ -26,7 +34,16 @@ class ServerSettingsOutlineView extends StatelessWidget {
         Row(
           children: [
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  showDragHandle: true,
+                  builder: (BuildContext context) {
+                    return buildBottomHalfSheet(context, const Text("TODO"));
+                  },
+                );
+              },
               style: OutlinedButton.styleFrom(
                 shape: const CircleBorder(),
               ),
@@ -34,7 +51,16 @@ class ServerSettingsOutlineView extends StatelessWidget {
             ),
             const Spacer(),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  showDragHandle: true,
+                  builder: (BuildContext context) {
+                    return buildBottomHalfSheet(context, const Text("TODO"));
+                  },
+                );
+              },
               style: OutlinedButton.styleFrom(
                 shape: const CircleBorder(),
               ),
@@ -42,7 +68,16 @@ class ServerSettingsOutlineView extends StatelessWidget {
             ),
             const Spacer(),
             OutlinedButton(
-              onPressed: () {},
+              onPressed: () {
+                showModalBottomSheet<void>(
+                  context: context,
+                  isScrollControlled: true,
+                  showDragHandle: true,
+                  builder: (BuildContext context) {
+                    return buildBottomHalfSheet(context, const Text("TODO"));
+                  },
+                );
+              },
               style: OutlinedButton.styleFrom(
                 shape: const CircleBorder(),
               ),
