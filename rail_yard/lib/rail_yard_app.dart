@@ -104,15 +104,17 @@ class RailYardApp extends StatelessWidget {
       body: const ServerView(),
       floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
       floatingActionButton: ElevatedButton(
-          onPressed: () => _showDialog(context),
-          style: ElevatedButton.styleFrom(
-            shape: const CircleBorder(),
-            padding: const EdgeInsets.all(2),
-            elevation: 5,
-            backgroundColor: Colors.green,
-            iconColor: Colors.white,
-          ),
-          child: const Icon(Icons.add)),
+        onPressed: () => _showDialog(context),
+        style: ElevatedButton.styleFrom(
+          shape: const CircleBorder(),
+          padding: const EdgeInsets.all(2),
+          elevation: 5,
+          backgroundColor: Colors.green,
+          iconColor: Colors.white,
+        ),
+        child: const Icon(Icons.add),
+      ),
+      bottomNavigationBar: const BottomAppBar(),
     );
   }
 }

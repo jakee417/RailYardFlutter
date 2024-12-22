@@ -89,6 +89,7 @@ class _RailYardOutlineView extends State<RailYardOutlineView>
               : const SizedBox(width: 0, height: 0),
         ],
       ),
+      bottomNavigationBar: const BottomAppBar(),
     );
   }
 
