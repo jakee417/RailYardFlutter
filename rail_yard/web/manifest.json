@@ -1,11 +1,11 @@
 {
-    "name": "rail_yard",
+    "name": "Rail Yard",
     "short_name": "rail_yard",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Web app for controlling a rail yard.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
